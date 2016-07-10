@@ -1,26 +1,15 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-xmlns:th="http://http://www.thymeleaf.org">
+xmlns:th="http://http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorator="LayoutPadrao">
 	<head>
-		<meta charset="UTF-8"/>
 		<title>Cadastro	de título</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
-		<link rel="stylesheet" type="text/css" href="/css/style.css"/>
 	</head>
-	<body>
-		<nav class="navbar navbar-inverse navbar-fixed-top">
-		  <div class="container-fluid">
-		    <div class="navbar-header">
-		      <a class="navbar-brand" href="#">
-		        <img alt="Vartarolli" src="/images/LOGO.png" style="width: 145px; height: 35px; "/>
-		      </a>
-		    </div>
-		  </div>
-		</nav>
-		 
-		    <form class="form-horizontal" style="margin-top: 80px" method="POST" action="/titulos">
-		    	<div class="alert alert-success" role="alert" th:if="${!#strings.isEmpty(mensagem)}"
+
+	<section layout:fragment="conteudo">	 
+	<form class="form-horizontal" style="margin-top: 80px" method="POST" action="/titulos">
+		  <div class="alert alert-success" role="alert" th:if="${!#strings.isEmpty(mensagem)}"
 		    	style="margin-left: 10px; margin-right: 10px">
 		    		<span th:text="${mensagem}"></span>
 		    	</div>
@@ -28,7 +17,10 @@ xmlns:th="http://http://www.thymeleaf.org">
 	  			<div class="panel panel-default">
 	  			
 	  				<div class="panel-heading">
-	  					<h1 class="panel-title">Novo título</h1>
+		  				<div class="clearfix">
+		  					<h1 class="panel-title aw-titulo-panel">Novo título</h1>
+		  					<a class="btn btn-link aw-link-panel" href="/titulos">Voltar para pesquisa</a>
+		  				</div>
 	  				</div>
 	  				
 	  				
@@ -68,12 +60,9 @@ xmlns:th="http://http://www.thymeleaf.org">
 	  				
 	  				</div>
 	  				
-	  			</div>
-  			</form>
+	  	</div>
+ </form>
+ </section>
 		
-				
-		
-		<script src="/js/jquery-2.2.4.min.js" type="text/javascript"></script>
-		<script src="/js/bootstrap.min.js" type="text/javascript"></script>
-	</body>
+	
 </html>
