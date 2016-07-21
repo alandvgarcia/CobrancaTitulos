@@ -7,13 +7,13 @@ layout:decorator="LayoutPadrao">
 		<title>Cadastro	de título</title>
 	</head>
 
-	<section layout:fragment="conteudo">	 
+	<section layout:fragment="conteudo">	
+	 
 	<form class="form-horizontal" style="margin-top: 80px" method="POST" action="/titulos" th:object="${titulo}">
-		       
-		       
+		    
 		      <div layout:include="Mensagem"></div>
 		       
-		       		    	
+		       
 	  			<div class="panel panel-default">
 	  			
 	  				<div class="panel-heading">
@@ -25,6 +25,9 @@ layout:decorator="LayoutPadrao">
 	  				
 	  				
 	  				<div class="panel-body">
+	  					<input type="hidden" th:field="*{codigo}" />
+	  				
+	  				
 	  					<div class="form-group" th:classappend="${#fields.hasErrors('descricao')} ? has-error">
 	  						<label for="descricao" class="col-sm-2 control-label">Descrição</label>
 	  						<div class="col-sm-4">

@@ -8,9 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.algaworks.cobranca.model.StatusTitulo;
 import com.algaworks.cobranca.model.Titulo;
@@ -19,6 +21,8 @@ import com.algaworks.cobranca.repository.Titulos;
 @Controller
 @RequestMapping("/titulos")
 public class TituloController {
+	
+	private static final String CADASTRO_VIEW = "CadastroTitulo";
     
 	
 	@Autowired //Injeção
@@ -27,28 +31,23 @@ public class TituloController {
 	@RequestMapping("/novo")
 	public ModelAndView novo()
 	{
-		ModelAndView mv = new ModelAndView("CadastroTitulo");
+		ModelAndView mv = new ModelAndView(CADASTRO_VIEW);
 		mv.addObject(new Titulo());
 		return mv;
 	}
 	
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView salvar(@Validated Titulo titulo, Errors errors)
+	public String salvar(@Validated Titulo titulo, Errors errors, RedirectAttributes attributes)
 	{
-		ModelAndView mv = new ModelAndView("CadastroTitulo");
 		if(errors.hasErrors())
 		{
-			return mv;
+			return CADASTRO_VIEW;
 		}
 		
 		 titulos.save(titulo);
-		
-		 
-		 
-		 
-		 mv.addObject("mensagem","Título salvo com sucesso.");
-		 return new ModelAndView("redirect:/titulos/novo");
+		 attributes.addFlashAttribute("mensagem","Título salvo com sucesso.");
+		 return  "redirect:/titulos/novo";
 	}
 	
 	@RequestMapping
@@ -57,6 +56,17 @@ public class TituloController {
 		List<Titulo> todosTitulos = titulos.findAll();
 		ModelAndView mv = new ModelAndView("PesquisaTitulos");
 		mv.addObject("titulos",todosTitulos);
+		return mv;
+	}
+	
+	@RequestMapping("{codigo}")
+	public ModelAndView edicao(@PathVariable Long codigo)
+	{
+		Titulo titulo = titulos.findOne(codigo);
+		
+		System.out.println(">>> codigo recebido: " + codigo);
+		ModelAndView mv = new ModelAndView(CADASTRO_VIEW);
+		mv.addObject(titulo);
 		return mv;
 	}
 	
