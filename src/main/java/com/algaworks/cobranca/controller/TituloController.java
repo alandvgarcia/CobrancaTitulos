@@ -2,6 +2,7 @@ package com.algaworks.cobranca.controller;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.jar.Attributes;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -67,6 +68,19 @@ public class TituloController {
 		
 		return mv;
 	}
+	
+	@RequestMapping(value="{codigo}", method = RequestMethod.DELETE)
+	public String excluir(@PathVariable Long codigo, RedirectAttributes attributes)
+	{
+		System.out.println("excluir");
+		
+		titulos.delete(codigo);
+		
+		attributes.addFlashAttribute("mensagem","Título excluido com sucesso!");
+	   
+		return "redirect:/titulos";
+	}
+
 	
 	@ModelAttribute("todosStatusTitulo")
 	public List<StatusTitulo> todosStatusTitulos()

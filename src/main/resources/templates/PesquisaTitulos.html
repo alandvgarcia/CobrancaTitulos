@@ -9,7 +9,11 @@ layout:decorator="LayoutPadrao">
 		</head>
 		
 		<section layout:fragment="conteudo">
+		
 			<form class="form-horizontal" style="margin-top: 80px">
+			
+			<div layout:include="MensagemGeral"></div>
+			
 			<div class="panel panel-default">
 		  			
 		  				<div class="panel-heading">
@@ -43,8 +47,13 @@ layout:decorator="LayoutPadrao">
 	   										th:text="${titulo.status.descricao}"></span>
 	   									</td>
 	   									<td class="text-center">
-	   										<a class="btn btn-link btn-xs"  th:href="@{/titulos/{codigo}(codigo=${titulo.codigo})}">
+	   										<a class="btn btn-link btn-xs"  th:href="@{/titulos/{codigo}(codigo=${titulo.codigo})}"
+	   										   >
 	   											<span class="glyphicon glyphicon-pencil"></span>
+	   										</a>
+	   										<a class="btn btn-link btn-xs" data-toggle="modal" data-target="#confirmacaoExclusaoModal"
+	   										th:attr="data-codigo=${titulo.codigo}, data-descricao=${titulo.descricao}">
+	   											<span class="glyphicon glyphicon-remove"></span>
 	   										</a>
 	   									</td>
 	   								</tr>
@@ -53,9 +62,14 @@ layout:decorator="LayoutPadrao">
 	   								</tr>
 	   							</tbody>
 	  						</table>
-		  				</div>
+		  				</div>			
+		  						  						  				
+		  				
 		  	</div>
 		  	</form>
+		  	
+		  	<div layout:include="DialogoConfirmacaoExclusao"></div>
+		  	
 	  	</section>
 
 </html>

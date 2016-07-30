@@ -11,7 +11,8 @@ layout:decorator="LayoutPadrao">
 	 
 	<form class="form-horizontal" style="margin-top: 80px" method="POST" action="/titulos" th:object="${titulo}">
 		    
-		      <div layout:include="Mensagem"></div>
+		      <div layout:include="MensagemGeral"></div>
+		      <div layout:include="MensagemErro"></div>
 		       
 		       
 	  			<div class="panel panel-default">
