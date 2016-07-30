@@ -27,5 +27,7 @@ $(function()
 		{
 	
 			$('[rel="tooltip"]').tooltip();
+			$('.currency').maskMoney({decimal: ',', thousands: '.' , allowZero: true});
 	
 		})
+		
