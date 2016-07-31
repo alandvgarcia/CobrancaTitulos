@@ -10,7 +10,7 @@ layout:decorator="LayoutPadrao">
 		
 		<section layout:fragment="conteudo">
 		
-			<form class="form-horizontal">
+			
 			
 			<div layout:include="MensagemGeral"></div>
 			
@@ -24,6 +24,24 @@ layout:decorator="LayoutPadrao">
 		  				</div>
 		  				
 		  				<div class="panel-body">
+		  				
+		  					<form method="GET" class="form-horizontal" action="/titulos" th:object="${filtro}">
+		  						<div class="form-group">
+		  							<div class="col-sm-4">
+		  								<div class="input-group">
+		  									<input class="form-control" placeholder="Qual título você está procurando?"
+		  									autofocus="autofocus" th:field="*{descricao}"></input>
+		  									<span class="input-group-btn">
+		  										<button type="submit" class="btn btn-default">
+		  											<i class="glyphicon glyphicon-search"></i>
+		  										</button>
+		  									</span>
+		  								</div>
+		  							</div>
+		  						</div>
+		  					</form>
+		  				
+		  					
 		  					<table class="table table-bordered table-striped">
 	   							<thead>
 	   								<tr>
@@ -73,7 +91,7 @@ layout:decorator="LayoutPadrao">
 		  						  						  				
 		  				
 		  	</div>
-		  	</form>
+		  	
 		  	
 		  	<div layout:include="DialogoConfirmacaoExclusao"></div>
 		  	
